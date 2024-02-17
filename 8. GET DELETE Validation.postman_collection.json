@@ -1,0 +1,678 @@
+{
+	"info": {
+		"_postman_id": "bcdfe76c-e3d6-403f-9726-12628afa257b",
+		"name": "8. GET DELETE Validation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32742003"
+	},
+	"item": [
+		{
+			"name": "GET BY USER ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"  \r",
+							"   pm.test(\"Invalid UserID\",function()\r",
+							"{\r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"Not Found\").to.eql(jsonData.error);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/{{userid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY USER ID NULL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"  \r",
+							"   pm.test(\"Invalid UserID\",function()\r",
+							"{\r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"Not Found\").to.eql(jsonData.error);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/uap/user/{{nullid}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uap",
+						"user",
+						"{{nullid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY USER name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"   pm.test(\"Invalid Username\",function()\r",
+							"{\r",
+							"   \r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"Not Found\").to.eql(jsonData.error);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/uap/users/username/{{invalidusername}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uap",
+						"users",
+						"username",
+						"{{invalidusername}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY USER name NULL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"   pm.test(\"Invalid Username\",function()\r",
+							"{\r",
+							"   \r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"Not Found\").to.eql(jsonData.error);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/uap/users/username/{{nullname}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uap",
+						"users",
+						"username",
+						"{{nullname}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BY USER ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"  \r",
+							"   pm.test(\"Delete BY Invalid UserID\",function()\r",
+							"{\r",
+							"   \r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"Not Found\").to.eql(jsonData.error);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/uap/deleteuser/{{userid}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uap",
+						"deleteuser",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BY USER ID NULL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"  \r",
+							"   pm.test(\"Delete BY Invalid UserID\",function()\r",
+							"{\r",
+							"   \r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"Not Found\").to.eql(jsonData.error);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/uap/deleteuser/{{nullid}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uap",
+						"deleteuser",
+						"{{nullid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BY FIRSTNAME",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"   pm.test(\"Delete Invalid Username\",function()\r",
+							"{\r",
+							"   \r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(\"404 NOT_FOUND\").to.eql(jsonData.status);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/deleteuser/username/{{invalidusername}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deleteuser",
+						"username",
+						"{{invalidusername}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BY FIRSTNAME NULL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"   pm.test(\"Delete Invalid Username\",function()\r",
+							"{\r",
+							"   \r",
+							"    const jsonData =pm.response.json();\r",
+							"    pm.expect(400).to.eql(jsonData.status);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/deleteuser/username/{{nullname}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deleteuser",
+						"username",
+						"{{nullname}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "Numpy@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "Password",
+			"value": "tim123",
+			"type": "string"
+		},
+		{
+			"key": "userid",
+			"value": "6000000",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Status",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userfirstnameup",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "invalidusername",
+			"value": "JJJJJJJJ"
+		},
+		{
+			"key": "nullid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "nullname",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

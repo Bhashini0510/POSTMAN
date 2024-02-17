@@ -1,0 +1,726 @@
+{
+	"info": {
+		"_postman_id": "4db5b4b4-4ac0-4c9e-9481-81cd7802fc6e",
+		"name": "1. LoginValidation for all Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32742003"
+	},
+	"item": [
+		{
+			"name": "POST USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							"\r",
+							"const jsonData =pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"const userid=jsonData.user_id;\r",
+							"pm.collectionVariables.set(\"userid\",userid);\r",
+							"\r",
+							"\r",
+							"const userfirstname=jsonData.user_first_name;\r",
+							"pm.collectionVariables.set(\"userfirstnameup\",userfirstname);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));\r",
+							"const randomNumber =_.random(1000000000,9999999999);\r",
+							"pm.variables.set(\"randomNumber\",randomNumber);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user_first_name\":  \"{{$randomFirstName}}\", \r\n \"user_last_name\":  \"{{$randomLastName}}\",\r\n \"user_contact_number\": {{randomNumber}}, //change\r\n \"user_email_id\": \"{{$randomExampleEmail}}\",\r\n\r\n\"userAddress\": {\r\n\"plotNumber\":\"75-B\",\r\n\"Street\": \"{{$randomStreetName}}\",\r\n\"state\": \"kentucky\",\r\n\"Country\": \"{{$randomCountry}}\",\r\n\"zipCode\": 435436\r\n }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/createusers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"createusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY USER ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/{{userid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY USER name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/username/{{userfirstnameup}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"username",
+						"{{userfirstnameup}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BY FIRSTNAME",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/deleteuser/username/{{userfirstnameup}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"deleteuser",
+						"username",
+						"{{userfirstnameup}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST USER Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							"\r",
+							"const jsonData =pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"const userid=jsonData.user_id;\r",
+							"pm.collectionVariables.set(\"userid\",userid);\r",
+							"\r",
+							"\r",
+							"const userfirstname=jsonData.user_first_name;\r",
+							"pm.collectionVariables.set(\"userfirstnameup\",userfirstname);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));\r",
+							"\r",
+							"const randomNumber =_.random(1000000000,9999999999);\r",
+							"pm.variables.set(\"randomNumber\",randomNumber);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user_first_name\":  \"{{$randomFirstName}}\", \r\n \"user_last_name\":  \"{{$randomLastName}}\",\r\n \"user_contact_number\": {{randomNumber}}, //change\r\n \"user_email_id\": \"{{$randomExampleEmail}}\",\r\n\r\n\"userAddress\": {\r\n\"plotNumber\":\"75-B\",\r\n\"Street\": \"{{$randomStreetName}}\",\r\n\"state\": \"kentucky\",\r\n\"Country\": \"{{$randomCountry}}\",\r\n\"zipCode\": 435436\r\n }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/createusers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"createusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));\r",
+							"\r",
+							"const randomNumber =_.random(1000000000,9999999999);\r",
+							"pm.variables.set(\"putrandomNumber\",randomNumber);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userAddress\": {\r\n  \r\n    \"plotNumber\": \"76-B\",\r\n    \"street\": \"string\",\r\n    \"state\": \"string\",\r\n    \"country\": \"string\",\r\n    \"zipCode\": 0\r\n  },\r\n  \"user_id\": {{userid}},\r\n  \"user_first_name\": \"{{$randomFirstName}}\",\r\n  \"user_last_name\": \"string\",\r\n  \"user_contact_number\": {{putrandomNumber}}, //change this\r\n  \"user_email_id\": \"{{$randomExampleEmail}}\",\r\n  \"creation_time\": \"2024-02-08T20:22:57.127Z\",\r\n  \"last_mod_time\": \"2024-02-08T20:22:57.127Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/updateuser/{{userid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"updateuser",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BY ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"url\",pm.iterationData.get(\"baseURL\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(pm.response.status);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/deleteuser/{{userid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"deleteuser",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "fname",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lname",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "contact",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "plot",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "street",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "state",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "country",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "zip",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Status",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userfirstnameup",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "randomstring",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "randomString",
+			"value": ""
+		}
+	]
+}

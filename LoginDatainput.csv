@@ -1,0 +1,8 @@
+username,password,Scenario,Status,baseURL
+Numpy@gmail.com,tim123,valid Credential,OK Created,https://userapi-8877aadaae71.herokuapp.com/uap
+Numpy@gmail.com,tim123,invalid URL,Not Found,https://userapi-8877aadaae71.herokuapp.com/uaps
+Numpy1@gmail.com,tim123,invalid username,Unauthorized,https://userapi-8877aadaae71.herokuapp.com/uap
+Numpy@gmail.com,tim1234,invalid password,Unauthorized,https://userapi-8877aadaae71.herokuapp.com/uap
+Numpy@gmail.com,tim1234,invalid password & username,Unauthorized,https://userapi-8877aadaae71.herokuapp.com/uap
+,tim123,empty user name,Unauthorized,https://userapi-8877aadaae71.herokuapp.com/uap
+Numpy@gmail.com,,empty password,Unauthorized,https://userapi-8877aadaae71.herokuapp.com/uap

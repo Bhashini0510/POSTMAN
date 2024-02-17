@@ -1,0 +1,37 @@
+Login Validation:
+
+newman run LoginValidation_for_all_Requests.postman_collection.json -d LoginDatainput.csv -e postman_environment.json -r htmlextra
+
+
+Positive POST Scenario:
+
+newman run Positive_Scenarios_for_POST.postman_collection.json -d POSITIVEDatainput.csv  -e postman_environment.json -r htmlextra
+
+Negative POST Scenario:
+
+newman run Negative_Scenarios_for_POST.postman_collection.json -d POSTNegative_Testcase_Input.csv -e postman_environment.json -r htmlextra
+
+
+
+
+400 POST:
+newman run 400_request_POST.postman_collection.json -d 400_POST.csv -e postman_environment.json -r htmlextra
+
+Positive PUT:
+newman run Positive_PUT_Scenarios.postman_collection.json -d POSITIVEPUTDatainput.csv -e postman_environment.json -r htmlextra
+
+Negative Scenario PUT:
+newman run Negative_PUT_Scenarios.postman_collection.json -d PUTNegative_Testcase_Input.csv -e postman_environment.json -r htmlextra
+
+
+400 PUT:
+newman run 400_Request_PUT.postman_collection.json -d 400PUT.csv -e postman_environment.json -r htmlextra
+
+
+GET DELETE VALIDATION:
+newman run GET_DELETE_Validation.postman_collection.json -e postman_environment.json -r htmlextra
+
+
+
+
+java -jar jenkins1.war 

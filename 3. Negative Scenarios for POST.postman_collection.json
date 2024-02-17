@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "f731a298-f02e-49e1-80f5-f16eb230ce8e",
+		"name": "3. Negative Scenarios for POST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32742003"
+	},
+	"item": [
+		{
+			"name": "Add New User Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"fname\",pm.iterationData.get(\"Firstname\"));\r",
+							"pm.collectionVariables.set(\"lname\",pm.iterationData.get(\"Lastname\"));\r",
+							"pm.collectionVariables.set(\"contact\",pm.iterationData.get(\"contactnumber\"));\r",
+							"pm.collectionVariables.set(\"email\",pm.iterationData.get(\"emailid\"));\r",
+							"pm.collectionVariables.set(\"plot\",pm.iterationData.get(\"plot\"));\r",
+							"pm.collectionVariables.set(\"street\",pm.iterationData.get(\"street\"));\r",
+							"pm.collectionVariables.set(\"state\",pm.iterationData.get(\"state\"));\r",
+							"pm.collectionVariables.set(\"country\",pm.iterationData.get(\"country\"));\r",
+							"pm.collectionVariables.set(\"zip\",pm.iterationData.get(\"zipcode\"));\r",
+							"pm.collectionVariables.set(\"message\",pm.iterationData.get(\"Message\"));\r",
+							"pm.collectionVariables.set(\"Scenario\",pm.iterationData.get(\"Scenario\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));\r",
+							"\r",
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"base_url\",pm.iterationData.get(\"baseURL\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user_first_name\":  \"bhasha\", \r\n \"user_last_name\":  \"bai\",\r\n \"user_contact_number\": \"1231131611\",\r\n \"user_email_id\": \"bhashabai@gmail.com\", // already existing id \r\n\r\n\"userAddress\": {\r\n\"plotNumber\":\"89-B\",\r\n\"Street\": \"{{$randomStreetName}}\",\r\n\"state\": \"Georgia\",\r\n\"Country\": \"{{$randomCountry}}\",\r\n\"zipCode\": \"890567\"\r\n }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/createusers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"createusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scenario Validation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"fname\",pm.iterationData.get(\"Firstname\"));\r",
+							"pm.collectionVariables.set(\"lname\",pm.iterationData.get(\"Lastname\"));\r",
+							"pm.collectionVariables.set(\"contact\",pm.iterationData.get(\"contactnumber\"));\r",
+							"pm.collectionVariables.set(\"email\",pm.iterationData.get(\"emailid\"));\r",
+							"pm.collectionVariables.set(\"plot\",pm.iterationData.get(\"plot\"));\r",
+							"pm.collectionVariables.set(\"street\",pm.iterationData.get(\"street\"));\r",
+							"pm.collectionVariables.set(\"state\",pm.iterationData.get(\"state\"));\r",
+							"pm.collectionVariables.set(\"country\",pm.iterationData.get(\"country\"));\r",
+							"pm.collectionVariables.set(\"zip\",pm.iterationData.get(\"zipcode\"));\r",
+							"pm.collectionVariables.set(\"message\",pm.iterationData.get(\"Message\"));\r",
+							"pm.collectionVariables.set(\"Scenario\",pm.iterationData.get(\"Scenario\"));\r",
+							"pm.collectionVariables.set(\"Status\",pm.iterationData.get(\"Status\"));\r",
+							"\r",
+							"pm.collectionVariables.set(\"username\",pm.iterationData.get(\"username\"));\r",
+							"pm.collectionVariables.set(\"Password\",pm.iterationData.get(\"password\"));\r",
+							"pm.collectionVariables.set(\"base_url\",pm.iterationData.get(\"baseURL\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"const jsonData =pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"\r",
+							"pm.test(\"validate the status:\"+pm.collectionVariables.get(\"Status\"),function()\r",
+							"{\r",
+							"    console.log(pm.collectionVariables.get(\"Scenario\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"Status\")).to.include(jsonData.status);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"validate the error message:\"+pm.collectionVariables.get(\"Scenario\"),function()\r",
+							"{  \r",
+							"    \r",
+							"    console.log(pm.collectionVariables.get(\"message\"));\r",
+							"    pm.expect(pm.collectionVariables.get(\"message\")).to.eql(jsonData.message); \r",
+							"    });\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user_first_name\":  \"{{fname}}\", \r\n \"user_last_name\":  \"{{lname}}\",\r\n \"user_contact_number\": \"{{contact}}\",\r\n \"user_email_id\": \"{{email}}\", \r\n\r\n\"userAddress\": {\r\n\"plotNumber\":\"{{plot}}\",\r\n\"Street\": \"{{street}}\",\r\n\"state\": \"{{state}}\",\r\n\"Country\": \"{{country}}\",\r\n\"zipCode\": \"{{zip}}\"\r\n }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/createusers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"createusers"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "fname",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lname",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "contact",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "plot",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "street",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "state",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "country",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "zip",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "message",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Status",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Scenario",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}
